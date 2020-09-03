@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using MediatRIdentity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MediatRIdentity.Models;
 
 namespace MediatRIdentity.Controllers {
     public class HomeController : Controller {
@@ -15,10 +12,12 @@ namespace MediatRIdentity.Controllers {
             _logger = logger;
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult Index() {
             return View();
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult Privacy() {
             return View();
         }
